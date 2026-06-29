@@ -1,6 +1,12 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildNext Labs — An Ecosystem for Tomorrow's Brands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
     --gold:#C9960C;--gold-light:#F0B429;--gold-dark:#8B6508;
@@ -8,8 +14,6 @@
     --gray-600:#3A3A3A;--gray-400:#6B6B6B;--gray-200:#CCCCCC;--gray-100:#E8E8E8;--white:#FFFFFF;
   }
   body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);min-height:100vh}
-
-  /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,150,12,0.2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
   .nav-logo{display:flex;align-items:center;gap:10px}
   .logo-text{font-size:1.4rem;font-weight:800;letter-spacing:-0.5px}
@@ -18,8 +22,6 @@
   .logo-sub{font-size:0.6rem;color:var(--gray-400);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:-2px}
   .nav-btn{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:var(--black);border:none;padding:8px 20px;border-radius:6px;font-weight:700;font-size:0.82rem;cursor:pointer;letter-spacing:0.5px}
   .nav-btn:hover{opacity:0.9}
-
-  /* HERO */
   .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
   .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(201,150,12,0.08) 0%,transparent 70%);pointer-events:none}
   .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,150,12,0.1);border:1px solid rgba(201,150,12,0.3);color:var(--gold-light);padding:6px 16px;border-radius:100px;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:2rem}
@@ -31,14 +33,10 @@
   .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2);padding:14px 28px;border-radius:8px;font-weight:500;font-size:0.95rem;cursor:pointer}
   .btn-primary:hover{opacity:0.92}
   .btn-ghost:hover{border-color:rgba(255,255,255,0.4)}
-
-  /* STATS BAR */
   .stats-bar{background:var(--gray-900);border-top:1px solid rgba(201,150,12,0.15);border-bottom:1px solid rgba(201,150,12,0.15);padding:1.5rem 2rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
   .stat-item{text-align:center}
   .stat-num{font-size:1.8rem;font-weight:800;color:var(--gold-light);line-height:1}
   .stat-label{font-size:0.7rem;color:var(--gray-400);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
-
-  /* FEATURES */
   .section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
   .section-label{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.8rem}
   .section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:1rem}
@@ -46,21 +44,13 @@
   .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
   .feature-card{background:var(--gray-900);border:1px solid var(--gray-700);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color 0.2s}
   .feature-card:hover{border-color:rgba(201,150,12,0.4)}
-  .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0}
-  .feature-card:hover::before{opacity:1}
   .feature-icon{width:40px;height:40px;background:rgba(201,150,12,0.1);border:1px solid rgba(201,150,12,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.1rem}
   .feature-title{font-size:1rem;font-weight:700;margin-bottom:0.5rem}
   .feature-desc{font-size:0.85rem;color:var(--gray-400);line-height:1.6}
-
-  /* CTA SECTION */
   .cta-section{background:var(--gray-900);border-top:1px solid var(--gray-700);border-bottom:1px solid var(--gray-700);padding:5rem 2rem;text-align:center}
   .cta-section h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px}
   .cta-section p{color:var(--gray-200);margin-bottom:2rem;font-size:1rem}
-
-  /* FOOTER */
   footer{padding:2rem;text-align:center;font-size:0.78rem;color:var(--gray-400);border-top:1px solid var(--gray-800)}
-
-  /* MODAL OVERLAY */
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
   .overlay.active{display:flex}
   .modal{background:var(--gray-900);border:1px solid rgba(201,150,12,0.25);border-radius:16px;padding:2.5rem;width:100%;max-width:420px;position:relative}
@@ -79,8 +69,6 @@
   .login-btn:hover{opacity:0.9}
   .error-msg{background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);color:#FCA5A5;padding:8px 12px;border-radius:6px;font-size:0.8rem;margin-bottom:1rem;display:none}
   .error-msg.show{display:block}
-
-  /* DASHBOARD */
   .dashboard{display:none;min-height:100vh;background:var(--black)}
   .dashboard.active{display:block}
   .dash-nav{background:var(--gray-900);border-bottom:1px solid rgba(201,150,12,0.2);padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between}
@@ -105,7 +93,7 @@
   .rank-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-800)}
   .rank-row:last-child{border-bottom:none}
   .rank-num{font-size:1rem;font-weight:800;color:var(--gold-light);min-width:36px}
-  .rank-name{font-size:0.82rem;flex:1}
+  .rank-name{font-size:0.82rem;flex:1;color:var(--gray-200)}
   .rank-badge{font-size:0.65rem;padding:2px 8px;border-radius:100px;font-weight:600}
   .badge-you{background:rgba(201,150,12,0.15);color:var(--gold-light);border:1px solid rgba(201,150,12,0.3)}
   .badge-comp{background:rgba(100,100,100,0.15);color:var(--gray-400);border:1px solid var(--gray-700)}
@@ -117,10 +105,10 @@
   .del-ok{color:var(--gold-light);font-weight:600}
   .coming-soon{text-align:center;padding:3rem 1rem;color:var(--gray-600);font-size:0.85rem;border:1px dashed var(--gray-700);border-radius:10px;margin-top:1rem}
   .cs-icon{font-size:2rem;margin-bottom:0.5rem;display:block}
-
-  /* HOMEPAGE WRAPPER */
-  #homepage{display:block}
+  .asin-tag{font-size:0.68rem;color:var(--gray-400);font-family:monospace;margin-left:4px}
 </style>
+</head>
+<body>
 
 <div id="homepage">
   <nav>
@@ -225,7 +213,7 @@
     <div class="nav-logo">
       <div class="logo-text" style="font-size:1.1rem"><span class="b">Build</span><span class="n">Next</span></div>
     </div>
-    <div class="dash-welcome">Signed in as <span id="userLabel">demo@buildnext.in</span></div>
+    <div class="dash-welcome">Signed in as <span id="userLabel">user@brand.com</span></div>
     <button class="logout-btn" onclick="doLogout()">Sign out</button>
   </div>
   <div class="dash-body">
@@ -242,11 +230,31 @@
     <div class="dash-grid">
       <div class="dash-card">
         <h3>Organic rank · Bath Accessories</h3>
-        <div class="rank-row"><span class="rank-num">#1</span><span class="rank-name">Plantex Towel Bar 24"</span><span class="rank-badge badge-you">You</span></div>
-        <div class="rank-row"><span class="rank-num">#2</span><span class="rank-name">Acme StainlessBar Pro</span><span class="rank-badge badge-comp">Rival</span></div>
-        <div class="rank-row"><span class="rank-num">#3</span><span class="rank-name">Plantex Soap Dish Set</span><span class="rank-badge badge-you">You</span></div>
-        <div class="rank-row"><span class="rank-num">#5</span><span class="rank-name">Zento TowelRack Deluxe</span><span class="rank-badge badge-comp">Rival</span></div>
-        <div class="rank-row"><span class="rank-num">#7</span><span class="rank-name">Rival LadderShelf 5T</span><span class="rank-badge badge-comp">Rival</span></div>
+        <div class="rank-row">
+          <span class="rank-num">#1</span>
+          <span class="rank-name">Towel Bar 24" — Matte Black<span class="asin-tag">B09XXXX01</span></span>
+          <span class="rank-badge badge-you">You</span>
+        </div>
+        <div class="rank-row">
+          <span class="rank-num">#2</span>
+          <span class="rank-name">Stainless Towel Bar Pro<span class="asin-tag">B09XXXX02</span></span>
+          <span class="rank-badge badge-comp">Rival</span>
+        </div>
+        <div class="rank-row">
+          <span class="rank-num">#3</span>
+          <span class="rank-name">Soap Dish — Brushed Gold<span class="asin-tag">B09XXXX03</span></span>
+          <span class="rank-badge badge-you">You</span>
+        </div>
+        <div class="rank-row">
+          <span class="rank-num">#5</span>
+          <span class="rank-name">Towel Rack Deluxe 5-Bar<span class="asin-tag">B09XXXX04</span></span>
+          <span class="rank-badge badge-comp">Rival</span>
+        </div>
+        <div class="rank-row">
+          <span class="rank-num">#7</span>
+          <span class="rank-name">Ladder Shelf 5-Tier Steel<span class="asin-tag">B09XXXX05</span></span>
+          <span class="rank-badge badge-comp">Rival</span>
+        </div>
       </div>
       <div class="dash-card">
         <h3>Delivery speed · Top cities</h3>
@@ -289,3 +297,5 @@
   }
   document.getElementById('loginOverlay').addEventListener('click',function(e){if(e.target===this)hideLogin()});
 </script>
+</body>
+</html>
