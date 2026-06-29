@@ -143,12 +143,23 @@
   #dash-inner .tag.c{background:var(--competitor);color:#9a3412}
   #dash-inner .empty{color:var(--muted);padding:30px;text-align:center}
   @media(max-width:720px){
+    .dash-topbar{padding:0 12px}
+    .dash-topbar-logo{font-size:0.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+    .dash-topbar-user{display:none}                 /* secondary text — drop on phones */
+    .signout-btn{flex:0 0 auto}
+    /* sidebar becomes a compact top bar; flex:0 0 auto stops the 210px height bug */
     #dash-inner .app{flex-direction:column}
-    #dash-inner .side{width:100%;flex-direction:row;align-items:center;overflow-x:auto;padding:10px}
-    #dash-inner .nav{flex-direction:row;margin:0 0 0 10px}
-    #dash-inner .nav button{border-left:0;border-bottom:3px solid transparent;white-space:nowrap}
-    #dash-inner .nav button.active{border-bottom-color:var(--primary-dark)}
-    #dash-inner .side .foot,#dash-inner .logo small{display:none}
+    #dash-inner .side{width:100%;flex:0 0 auto;flex-direction:row;flex-wrap:wrap;align-items:center;
+                      gap:6px 8px;padding:8px 10px;border-right:0;border-bottom:1px solid var(--border)}
+    #dash-inner .logo{font-size:18px;padding:0 4px}
+    #dash-inner .logo small{display:none}
+    #dash-inner .nav{flex-direction:row;flex-wrap:wrap;margin:0;gap:6px}   /* all tabs visible */
+    #dash-inner .nav button{border-left:0;border-radius:8px;padding:7px 12px;font-size:13px;white-space:nowrap}
+    #dash-inner .nav button.active{border-left:0}
+    #dash-inner .side .foot{display:none}
+    #dash-inner .main{padding:16px 14px}
+    #dash-inner .tablewrap{max-height:none}         /* let the page scroll naturally */
+    #dash-inner .legend{margin-left:0}
   }
 </style>
 </head>
