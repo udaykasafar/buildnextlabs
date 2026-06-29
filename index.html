@@ -11,16 +11,15 @@
   :root{
     --gold:#C9960C;--gold-light:#F0B429;--gold-dark:#8B6508;
     --black:#0A0A0A;--gray-900:#111111;--gray-800:#1A1A1A;--gray-700:#2A2A2A;
-    --gray-600:#3A3A3A;--gray-400:#6B6B6B;--gray-200:#CCCCCC;--gray-100:#E8E8E8;--white:#FFFFFF;
+    --gray-600:#3A3A3A;--gray-400:#6B6B6B;--gray-200:#CCCCCC;--white:#FFFFFF;
   }
   body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);min-height:100vh}
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,150,12,0.2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
-  .nav-logo{display:flex;align-items:center;gap:10px}
+  #homepage nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,150,12,0.2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
   .logo-text{font-size:1.4rem;font-weight:800;letter-spacing:-0.5px}
   .logo-text span.b{color:var(--white)}
   .logo-text span.n{color:var(--gold-light)}
   .logo-sub{font-size:0.6rem;color:var(--gray-400);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:-2px}
-  .nav-btn{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:var(--black);border:none;padding:8px 20px;border-radius:6px;font-weight:700;font-size:0.82rem;cursor:pointer;letter-spacing:0.5px}
+  .nav-btn{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:var(--black);border:none;padding:8px 20px;border-radius:6px;font-weight:700;font-size:0.82rem;cursor:pointer}
   .nav-btn:hover{opacity:0.9}
   .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
   .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(201,150,12,0.08) 0%,transparent 70%);pointer-events:none}
@@ -29,7 +28,7 @@
   .hero h1 .gold{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
   .hero-desc{font-size:1.05rem;color:var(--gray-200);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .btn-primary{background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold-light) 100%);color:var(--black);border:none;padding:14px 32px;border-radius:8px;font-weight:800;font-size:0.95rem;cursor:pointer;letter-spacing:0.3px}
+  .btn-primary{background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold-light) 100%);color:var(--black);border:none;padding:14px 32px;border-radius:8px;font-weight:800;font-size:0.95rem;cursor:pointer}
   .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2);padding:14px 28px;border-radius:8px;font-weight:500;font-size:0.95rem;cursor:pointer}
   .btn-primary:hover{opacity:0.92}
   .btn-ghost:hover{border-color:rgba(255,255,255,0.4)}
@@ -42,7 +41,7 @@
   .section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:1rem}
   .section-desc{color:var(--gray-200);font-size:1rem;line-height:1.7;max-width:540px;margin-bottom:3rem}
   .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-  .feature-card{background:var(--gray-900);border:1px solid var(--gray-700);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+  .feature-card{background:var(--gray-900);border:1px solid var(--gray-700);border-radius:12px;padding:1.5rem;transition:border-color 0.2s}
   .feature-card:hover{border-color:rgba(201,150,12,0.4)}
   .feature-icon{width:40px;height:40px;background:rgba(201,150,12,0.1);border:1px solid rgba(201,150,12,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.1rem}
   .feature-title{font-size:1rem;font-weight:700;margin-bottom:0.5rem}
@@ -51,251 +50,637 @@
   .cta-section h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px}
   .cta-section p{color:var(--gray-200);margin-bottom:2rem;font-size:1rem}
   footer{padding:2rem;text-align:center;font-size:0.78rem;color:var(--gray-400);border-top:1px solid var(--gray-800)}
+
+  /* LOGIN MODAL */
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
   .overlay.active{display:flex}
   .modal{background:var(--gray-900);border:1px solid rgba(201,150,12,0.25);border-radius:16px;padding:2.5rem;width:100%;max-width:420px;position:relative}
   .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gray-400);font-size:1.2rem;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px}
   .modal-close:hover{background:var(--gray-800);color:var(--white)}
   .modal-logo{text-align:center;margin-bottom:1.5rem}
-  .modal-logo .logo-text{font-size:1.6rem}
   .modal h2{font-size:1.2rem;font-weight:700;margin-bottom:0.4rem}
-  .modal p{font-size:0.83rem;color:var(--gray-400);margin-bottom:1.5rem}
+  .modal p.sub{font-size:0.83rem;color:var(--gray-400);margin-bottom:1.5rem}
   .form-group{margin-bottom:1rem}
-  .form-group label{display:block;font-size:0.78rem;font-weight:600;color:var(--gray-200);margin-bottom:6px;letter-spacing:0.3px}
-  .form-group input{width:100%;background:var(--gray-800);border:1px solid var(--gray-600);color:var(--white);padding:10px 14px;border-radius:8px;font-size:0.9rem;font-family:inherit;outline:none}
+  .form-group label{display:block;font-size:0.78rem;font-weight:600;color:var(--gray-200);margin-bottom:6px}
+  .form-group input{width:100%;background:var(--gray-800);border:1px solid var(--gray-600);color:var(--white);padding:10px 14px;border-radius:8px;font-size:0.9rem;font-family:inherit;outline:none;transition:border-color 0.2s}
   .form-group input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,150,12,0.1)}
   .form-group input::placeholder{color:var(--gray-400)}
+  .otp-input{letter-spacing:6px;font-size:1.4rem;font-weight:700;text-align:center}
   .login-btn{width:100%;background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));color:var(--black);border:none;padding:12px;border-radius:8px;font-weight:800;font-size:0.95rem;cursor:pointer;margin-top:0.5rem;font-family:inherit}
   .login-btn:hover{opacity:0.9}
+  .login-btn:disabled{opacity:0.5;cursor:not-allowed}
   .error-msg{background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);color:#FCA5A5;padding:8px 12px;border-radius:6px;font-size:0.8rem;margin-bottom:1rem;display:none}
   .error-msg.show{display:block}
-  .dashboard{display:none;min-height:100vh;background:var(--black)}
-  .dashboard.active{display:block}
-  .dash-nav{background:var(--gray-900);border-bottom:1px solid rgba(201,150,12,0.2);padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between}
-  .dash-welcome{font-size:0.82rem;color:var(--gray-400)}
-  .dash-welcome span{color:var(--gold-light);font-weight:600}
-  .logout-btn{background:none;border:1px solid var(--gray-600);color:var(--gray-200);padding:6px 14px;border-radius:6px;font-size:0.78rem;cursor:pointer;font-family:inherit}
-  .logout-btn:hover{border-color:var(--gold);color:var(--gold)}
-  .dash-body{padding:2rem 1.5rem;max-width:1200px;margin:0 auto}
-  .dash-header{margin-bottom:2rem}
-  .dash-header h1{font-size:1.5rem;font-weight:800;letter-spacing:-0.5px}
-  .dash-header p{color:var(--gray-400);font-size:0.85rem;margin-top:4px}
-  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
-  .kpi{background:var(--gray-900);border:1px solid var(--gray-700);border-radius:10px;padding:1.2rem}
-  .kpi-label{font-size:0.7rem;color:var(--gray-400);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
-  .kpi-val{font-size:1.8rem;font-weight:800;line-height:1;color:var(--gold-light)}
-  .kpi-change{font-size:0.72rem;margin-top:4px;color:#4ADE80}
-  .kpi-change.down{color:#F87171}
-  .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  @media(max-width:640px){.dash-grid{grid-template-columns:1fr}}
-  .dash-card{background:var(--gray-900);border:1px solid var(--gray-700);border-radius:10px;padding:1.2rem}
-  .dash-card h3{font-size:0.82rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--gray-400);margin-bottom:1rem}
-  .rank-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-800)}
-  .rank-row:last-child{border-bottom:none}
-  .rank-num{font-size:1rem;font-weight:800;color:var(--gold-light);min-width:36px}
-  .rank-name{font-size:0.82rem;flex:1;color:var(--gray-200)}
-  .rank-badge{font-size:0.65rem;padding:2px 8px;border-radius:100px;font-weight:600}
-  .badge-you{background:rgba(201,150,12,0.15);color:var(--gold-light);border:1px solid rgba(201,150,12,0.3)}
-  .badge-comp{background:rgba(100,100,100,0.15);color:var(--gray-400);border:1px solid var(--gray-700)}
-  .delivery-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray-800);font-size:0.82rem}
-  .delivery-row:last-child{border-bottom:none}
-  .city-name{color:var(--gray-200)}
-  .del-fast{color:#4ADE80;font-weight:600}
-  .del-slow{color:#F87171;font-weight:600}
-  .del-ok{color:var(--gold-light);font-weight:600}
-  .coming-soon{text-align:center;padding:3rem 1rem;color:var(--gray-600);font-size:0.85rem;border:1px dashed var(--gray-700);border-radius:10px;margin-top:1rem}
-  .cs-icon{font-size:2rem;margin-bottom:0.5rem;display:block}
-  .asin-tag{font-size:0.68rem;color:var(--gray-400);font-family:monospace;margin-left:4px}
+  .step-indicator{display:flex;align-items:center;gap:8px;margin-bottom:1.5rem}
+  .step{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;border:1px solid var(--gray-600);color:var(--gray-400)}
+  .step.active{background:var(--gold);border-color:var(--gold);color:var(--black)}
+  .step.done{background:rgba(74,222,128,0.2);border-color:#4ADE80;color:#4ADE80}
+  .step-line{flex:1;height:1px;background:var(--gray-700)}
+  .otp-hint{font-size:0.75rem;color:var(--gray-400);text-align:center;margin-top:8px}
+  .timer-bar-wrap{height:3px;background:var(--gray-700);border-radius:2px;margin-top:12px;overflow:hidden}
+  .timer-bar{height:100%;background:var(--gold-light);border-radius:2px;transition:width 1s linear}
+
+  /* DASHBOARD */
+  #dashboard-wrapper{display:none}
+  #dashboard-wrapper.active{display:block}
+  .dash-topbar{background:#0f172a;border-bottom:1px solid rgba(201,150,12,0.2);padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif}
+  .dash-topbar-logo{font-size:1rem;font-weight:800;letter-spacing:-0.3px}
+  .dash-topbar-logo span.b{color:#fff}
+  .dash-topbar-logo span.n{color:var(--gold-light)}
+  .dash-topbar-right{display:flex;align-items:center;gap:12px}
+  .dash-topbar-user{font-size:0.78rem;color:#94a3b8}
+  .dash-topbar-user span{color:var(--gold-light);font-weight:600}
+  .signout-btn{background:none;border:1px solid #334155;color:#94a3b8;padding:5px 14px;border-radius:6px;font-size:0.75rem;cursor:pointer;font-family:inherit}
+  .signout-btn:hover{border-color:var(--gold);color:var(--gold-light)}
+
+  /* INNER DASHBOARD */
+  #dash-inner{
+    --primary:#0d9488;--primary-dark:#0f766e;--text:#0f172a;--muted:#64748b;
+    --bg:#f1f5f9;--card:#ffffff;--border:#e2e8f0;
+    --plantex:#e6f7f7;--competitor:#fff7ed;
+    --fast:#dcfce7;--med:#fff3db;--slow:#fee2e2;--na:#f3f4f6;
+    font-family:'Segoe UI',Roboto,Arial,sans-serif;
+    color:var(--text);background:var(--bg);min-height:calc(100vh - 52px);
+  }
+  #dash-inner .app{display:flex;min-height:calc(100vh - 52px)}
+  #dash-inner .side{width:210px;background:#fff;border-right:1px solid var(--border);flex:0 0 210px;display:flex;flex-direction:column;padding:18px 0}
+  #dash-inner .logo{font-size:22px;font-weight:800;color:var(--primary);padding:0 18px;letter-spacing:-.5px}
+  #dash-inner .logo small{display:block;font-size:9px;letter-spacing:3px;color:var(--muted);font-weight:700}
+  #dash-inner .nav{margin-top:22px;display:flex;flex-direction:column}
+  #dash-inner .nav button{appearance:none;border:0;background:transparent;text-align:left;padding:11px 18px;font-size:14px;color:var(--muted);cursor:pointer;border-left:3px solid transparent}
+  #dash-inner .nav button:hover{background:#f8fafc;color:var(--text)}
+  #dash-inner .nav button.active{background:var(--primary);color:#fff;border-left-color:var(--primary-dark)}
+  #dash-inner .side .foot{margin-top:auto;padding:12px 18px;color:var(--muted);font-size:11px}
+  #dash-inner .main{flex:1;min-width:0;padding:22px 26px;overflow:auto}
+  #dash-inner h1{margin:0 0 4px;font-size:26px}
+  #dash-inner .sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+  #dash-inner .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 6px 20px rgba(15,23,42,.05);padding:14px 16px;margin-bottom:16px}
+  #dash-inner .bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  #dash-inner .bar label{font-size:13px;color:var(--muted)}
+  #dash-inner select,#dash-inner input[type=search]{padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;color:var(--text);min-width:160px}
+  #dash-inner input[type=search]{min-width:220px}
+  #dash-inner .status{color:var(--muted);font-size:12px;margin-top:8px}
+  #dash-inner .legend{margin-left:auto;display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted)}
+  #dash-inner .sq{display:inline-block;width:12px;height:12px;border:1px solid #cbd5e1;border-radius:2px;vertical-align:-2px;margin-right:4px}
+  #dash-inner .runbtn{padding:7px 16px;border:0;border-radius:8px;background:var(--primary);color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+  #dash-inner .runbtn:hover{background:var(--primary-dark)}
+  #dash-inner .runbtn:disabled{opacity:.55;cursor:default}
+  #dash-inner .tablewrap{overflow:auto;max-height:calc(100vh - 282px)}
+  #dash-inner table{border-collapse:collapse;width:100%;font-size:13px}
+  #dash-inner th,#dash-inner td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
+  #dash-inner th{position:sticky;top:0;background:#0f766e;color:#fff;z-index:1;font-weight:600}
+  #dash-inner td.num,#dash-inner th.num{text-align:center}
+  #dash-inner tr.plantex td{background:var(--plantex)}
+  #dash-inner tr.competitor td{background:var(--competitor)}
+  #dash-inner a.asin{color:var(--primary);text-decoration:none;font-weight:600}
+  #dash-inner a.asin:hover{text-decoration:underline}
+  #dash-inner .cell-fast{background:var(--fast)}
+  #dash-inner .cell-med{background:var(--med)}
+  #dash-inner .cell-slow{background:var(--slow)}
+  #dash-inner .cell-na{background:var(--na)}
+  #dash-inner .tag{font-size:11px;padding:1px 7px;border-radius:9px;font-weight:600}
+  #dash-inner .tag.p{background:var(--plantex);color:var(--primary-dark)}
+  #dash-inner .tag.c{background:var(--competitor);color:#9a3412}
+  #dash-inner .empty{color:var(--muted);padding:30px;text-align:center}
+  @media(max-width:720px){
+    #dash-inner .app{flex-direction:column}
+    #dash-inner .side{width:100%;flex-direction:row;align-items:center;overflow-x:auto;padding:10px}
+    #dash-inner .nav{flex-direction:row;margin:0 0 0 10px}
+    #dash-inner .nav button{border-left:0;border-bottom:3px solid transparent;white-space:nowrap}
+    #dash-inner .nav button.active{border-bottom-color:var(--primary-dark)}
+    #dash-inner .side .foot,#dash-inner .logo small{display:none}
+  }
 </style>
 </head>
 <body>
 
+<!-- HOMEPAGE -->
 <div id="homepage">
   <nav>
-    <div class="nav-logo">
-      <div>
-        <div class="logo-text"><span class="b">Build</span><span class="n">Next</span></div>
-        <span class="logo-sub">Labs</span>
-      </div>
+    <div>
+      <div class="logo-text"><span class="b">Build</span><span class="n">Next</span></div>
+      <span class="logo-sub">Labs</span>
     </div>
     <button class="nav-btn" onclick="showLogin()">Sign in</button>
   </nav>
-
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-badge">⚡ Intelligence Platform for E-commerce Brands</div>
     <h1>Every insight your brand needs.<br><span class="gold">One click away.</span></h1>
     <p class="hero-desc">Track rankings, monitor delivery windows, benchmark competitors, and spot opportunities — all in real time, without opening a single marketplace tab.</p>
     <div class="hero-cta">
-      <button class="btn-primary" onclick="showLogin()">Get Started Free →</button>
+      <button class="btn-primary" onclick="showLogin()">Get Started →</button>
       <button class="btn-ghost" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">See what's inside</button>
     </div>
   </section>
-
   <div class="stats-bar">
     <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">Cities tracked</div></div>
     <div class="stat-item"><div class="stat-num">Live</div><div class="stat-label">Rank updates</div></div>
     <div class="stat-item"><div class="stat-num">100s</div><div class="stat-label">SKUs monitored</div></div>
     <div class="stat-item"><div class="stat-num">1-click</div><div class="stat-label">Full report</div></div>
   </div>
-
   <div id="features" class="section">
     <div class="section-label">What BuildNext Labs does</div>
     <div class="section-title">Stop guessing.<br>Start knowing.</div>
     <p class="section-desc">Your team spends hours clicking through pages that change every hour. We capture all of it automatically and surface what matters.</p>
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🏆</div>
-        <div class="feature-title">Bestseller rank tracker</div>
-        <div class="feature-desc">See which products are climbing or falling in any category. Updated live — no manual searching, no spreadsheet chaos.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">Organic rank by brand</div>
-        <div class="feature-desc">Know your position for every keyword and category. See exactly where you rank versus every competitor, at a glance.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🚚</div>
-        <div class="feature-title">Delivery intelligence</div>
-        <div class="feature-desc">Find out when your products — and your competitors' — are promised for delivery across 12+ cities. Spot your slow clusters before customers do.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📍</div>
-        <div class="feature-title">City-level heatmap</div>
-        <div class="feature-desc">See a delivery speed heatmap across India. Know which pincodes you're fast in, which you're losing ground, and where to act.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔔</div>
-        <div class="feature-title">Rank change alerts</div>
-        <div class="feature-desc">Get notified the moment your rank jumps or drops. Never miss a shift that could mean a win — or a threat.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-title">One-click reports</div>
-        <div class="feature-desc">Export everything — rank history, delivery benchmarks, competitor positions — into a single clean report, whenever you need it.</div>
-      </div>
+      <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Bestseller rank tracker</div><div class="feature-desc">See which products are climbing or falling in any category. Updated live — no manual searching.</div></div>
+      <div class="feature-card"><div class="feature-icon">🔍</div><div class="feature-title">Organic rank by brand</div><div class="feature-desc">Know your position for every keyword and category versus every competitor, at a glance.</div></div>
+      <div class="feature-card"><div class="feature-icon">🚚</div><div class="feature-title">Delivery intelligence</div><div class="feature-desc">Find out when your products and competitors are promised for delivery across 12+ cities.</div></div>
+      <div class="feature-card"><div class="feature-icon">🗺️</div><div class="feature-title">City-level heatmap</div><div class="feature-desc">See a delivery speed heatmap across India. Know which pincodes you're fast in.</div></div>
+      <div class="feature-card"><div class="feature-icon">🔔</div><div class="feature-title">Rank change alerts</div><div class="feature-desc">Get notified the moment your rank jumps or drops. Never miss a shift.</div></div>
+      <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">One-click reports</div><div class="feature-desc">Export rank history, delivery benchmarks, and competitor positions in one click.</div></div>
     </div>
   </div>
-
   <div class="cta-section">
     <h2>Your competitors are already watching.<br>Are you?</h2>
     <p>Join the brands using BuildNext Labs to stay one step ahead — every day.</p>
     <button class="btn-primary" onclick="showLogin()">Sign in to your dashboard →</button>
   </div>
-
   <footer>© 2026 BuildNext Labs · An Ecosystem for Tomorrow's Brands</footer>
 </div>
 
+<!-- LOGIN MODAL — STEP 1: credentials -->
 <div class="overlay" id="loginOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="hideLogin()">✕</button>
+    <button class="modal-close" onclick="hideLogin()">×</button>
     <div class="modal-logo">
-      <div class="logo-text"><span class="b">Build</span><span class="n">Next</span></div>
-      <span class="logo-sub" style="font-size:0.6rem;color:#6B6B6B;letter-spacing:2px;text-transform:uppercase">Labs</span>
+      <div class="logo-text" style="font-size:1.6rem"><span class="b">Build</span><span class="n">Next</span></div>
+      <span style="font-size:0.6rem;color:#6B6B6B;letter-spacing:2px;text-transform:uppercase;display:block;text-align:center">Labs</span>
     </div>
-    <h2>Welcome back</h2>
-    <p>Sign in to access your intelligence dashboard.</p>
-    <div class="error-msg" id="errorMsg">Incorrect email or password. Try again.</div>
-    <div class="form-group">
-      <label>Email address</label>
-      <input type="email" id="emailInput" placeholder="you@yourbrand.com" />
+    <div class="step-indicator">
+      <div class="step active" id="s1">1</div>
+      <div class="step-line"></div>
+      <div class="step" id="s2">2</div>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="passInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
+    <h2 id="modal-title">Sign in</h2>
+    <p class="sub" id="modal-sub">Enter your credentials to continue.</p>
+    <div class="error-msg" id="errorMsg"></div>
+
+    <!-- Step 1 -->
+    <div id="step1-fields">
+      <div class="form-group">
+        <label>User ID</label>
+        <input type="text" id="userInput" placeholder="Enter your user ID" autocomplete="username"/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="passInput" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkCredentials()"/>
+      </div>
+      <button class="login-btn" onclick="checkCredentials()">Continue →</button>
     </div>
-    <button class="login-btn" onclick="doLogin()">Sign in →</button>
+
+    <!-- Step 2 (hidden initially) -->
+    <div id="step2-fields" style="display:none">
+      <div class="form-group">
+        <label>6-digit code from Google Authenticator</label>
+        <input type="text" id="otpInput" class="otp-input" placeholder="000000" maxlength="6" inputmode="numeric" onkeydown="if(event.key==='Enter')checkOTP()" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+      </div>
+      <p class="otp-hint">Open Google Authenticator → BuildNext Labs → enter the 6-digit code</p>
+      <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar"></div></div>
+      <button class="login-btn" style="margin-top:1rem" onclick="checkOTP()">Verify &amp; Sign in →</button>
+      <button onclick="backToStep1()" style="width:100%;background:none;border:none;color:var(--gray-400);font-size:0.8rem;cursor:pointer;margin-top:10px;font-family:inherit">← Back</button>
+    </div>
   </div>
 </div>
 
-<div class="dashboard" id="dashboard">
-  <div class="dash-nav">
-    <div class="nav-logo">
-      <div class="logo-text" style="font-size:1.1rem"><span class="b">Build</span><span class="n">Next</span></div>
+<!-- DASHBOARD -->
+<div id="dashboard-wrapper">
+  <div class="dash-topbar">
+    <div class="dash-topbar-logo"><span class="b">Build</span><span class="n">Next</span> <span style="color:#94a3b8;font-weight:400;font-size:0.75rem;margin-left:4px">Labs · Intelligence</span></div>
+    <div class="dash-topbar-right">
+      <div class="dash-topbar-user">Signed in as <span>Plantex</span></div>
+      <button class="signout-btn" onclick="doLogout()">Sign out</button>
     </div>
-    <div class="dash-welcome">Signed in as <span id="userLabel">user@brand.com</span></div>
-    <button class="logout-btn" onclick="doLogout()">Sign out</button>
   </div>
-  <div class="dash-body">
-    <div class="dash-header">
-      <h1>Intelligence Dashboard</h1>
-      <p>Live data · Updated just now</p>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi"><div class="kpi-label">Your Best Rank</div><div class="kpi-val">#3</div><div class="kpi-change">↑ 2 positions today</div></div>
-      <div class="kpi"><div class="kpi-label">SKUs Tracked</div><div class="kpi-val">48</div><div class="kpi-change">+3 this week</div></div>
-      <div class="kpi"><div class="kpi-label">Cities Monitored</div><div class="kpi-val">12</div><div class="kpi-change">All live</div></div>
-      <div class="kpi"><div class="kpi-label">Delivery Advantage</div><div class="kpi-val">7</div><div class="kpi-change">Cities faster than top rival</div></div>
-    </div>
-    <div class="dash-grid">
-      <div class="dash-card">
-        <h3>Organic rank · Bath Accessories</h3>
-        <div class="rank-row">
-          <span class="rank-num">#1</span>
-          <span class="rank-name">Towel Bar 24" — Matte Black<span class="asin-tag">B09XXXX01</span></span>
-          <span class="rank-badge badge-you">You</span>
+  <div id="dash-inner">
+    <div class="app">
+      <aside class="side">
+        <div class="logo">plantex<small>RANK INTELLIGENCE</small></div>
+        <nav class="nav" id="nav">
+          <button data-view="keyword" class="active">Keyword Ranks</button>
+          <button data-view="bsr">Bestsellers (BSR)</button>
+          <button data-view="delivery">Delivery Speed</button>
+          <button data-view="run">Run Scan</button>
+        </nav>
+        <div class="foot">Cloud · read-only<br><span id="conn"></span></div>
+      </aside>
+      <main class="main">
+        <h1 id="title">Keyword Ranks</h1>
+        <div class="sub" id="subtitle">Organic rankings by keyword, captured on each scan date.</div>
+        <div class="card">
+          <div class="bar" id="filters"></div>
+          <div class="status" id="status"></div>
         </div>
-        <div class="rank-row">
-          <span class="rank-num">#2</span>
-          <span class="rank-name">Stainless Towel Bar Pro<span class="asin-tag">B09XXXX02</span></span>
-          <span class="rank-badge badge-comp">Rival</span>
+        <div class="card" style="padding:0">
+          <div class="tablewrap"><div id="table"></div></div>
         </div>
-        <div class="rank-row">
-          <span class="rank-num">#3</span>
-          <span class="rank-name">Soap Dish — Brushed Gold<span class="asin-tag">B09XXXX03</span></span>
-          <span class="rank-badge badge-you">You</span>
-        </div>
-        <div class="rank-row">
-          <span class="rank-num">#5</span>
-          <span class="rank-name">Towel Rack Deluxe 5-Bar<span class="asin-tag">B09XXXX04</span></span>
-          <span class="rank-badge badge-comp">Rival</span>
-        </div>
-        <div class="rank-row">
-          <span class="rank-num">#7</span>
-          <span class="rank-name">Ladder Shelf 5-Tier Steel<span class="asin-tag">B09XXXX05</span></span>
-          <span class="rank-badge badge-comp">Rival</span>
-        </div>
-      </div>
-      <div class="dash-card">
-        <h3>Delivery speed · Top cities</h3>
-        <div class="delivery-row"><span class="city-name">Mumbai</span><span class="del-fast">Same day ✓</span></div>
-        <div class="delivery-row"><span class="city-name">Delhi NCR</span><span class="del-fast">Next day ✓</span></div>
-        <div class="delivery-row"><span class="city-name">Bengaluru</span><span class="del-ok">2 days</span></div>
-        <div class="delivery-row"><span class="city-name">Surat</span><span class="del-fast">Same day ✓</span></div>
-        <div class="delivery-row"><span class="city-name">Pune</span><span class="del-ok">2 days</span></div>
-        <div class="delivery-row"><span class="city-name">Hyderabad</span><span class="del-slow">3 days ↓</span></div>
-        <div class="delivery-row"><span class="city-name">Kolkata</span><span class="del-slow">4 days ↓</span></div>
-      </div>
-    </div>
-    <div class="coming-soon" style="margin-top:1rem">
-      <span class="cs-icon">🔧</span>
-      More modules coming soon — Bestseller rank history, competitor delivery heatmap, one-click export, and rank-change alerts.
+      </main>
     </div>
   </div>
 </div>
 
 <script>
-  function showLogin(){document.getElementById('loginOverlay').classList.add('active')}
-  function hideLogin(){document.getElementById('loginOverlay').classList.remove('active');document.getElementById('errorMsg').classList.remove('show')}
-  function doLogin(){
-    var email=document.getElementById('emailInput').value.trim();
-    var pass=document.getElementById('passInput').value;
-    if(email&&pass.length>=4){
-      document.getElementById('loginOverlay').classList.remove('active');
-      document.getElementById('homepage').style.display='none';
-      document.getElementById('userLabel').textContent=email;
-      document.getElementById('dashboard').classList.add('active');
-    } else {
-      document.getElementById('errorMsg').classList.add('show');
+/* ═══════════════════ TOTP ENGINE (RFC 6238) ═══════════════════
+   Runs entirely in the browser. The secret must match what you set
+   up in Google Authenticator exactly.
+   NOTE: a username/password/secret in client-side code is a soft
+   gate, not real security — anyone who views the page source can
+   read them. Fine for a private dashboard whose DATA is read-only;
+   do not treat it as protecting anything sensitive.
+══════════════════════════════════════════════════════════════ */
+const TOTP_SECRET = 'JBSWY3DPEHPK3PXP'; // Base32 secret — matches Google Authenticator
+
+function base32Decode(s) {
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  s = s.toUpperCase().replace(/=+$/, '');
+  let bits = 0, val = 0;
+  const out = [];
+  for (let i = 0; i < s.length; i++) {
+    val = (val << 5) | alpha.indexOf(s[i]);
+    bits += 5;
+    if (bits >= 8) { out.push((val >>> (bits - 8)) & 255); bits -= 8; }
+  }
+  return new Uint8Array(out);
+}
+async function hmacSHA1(keyBytes, msgBytes) {
+  const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+  const sig = await crypto.subtle.sign('HMAC', key, msgBytes);
+  return new Uint8Array(sig);
+}
+function numToBytes(n) {
+  const b = new Uint8Array(8);
+  for (let i = 7; i >= 0; i--) { b[i] = n & 0xff; n = Math.floor(n / 256); }
+  return b;
+}
+async function generateTOTP(secret, offset = 0) {
+  const counter = Math.floor(Date.now() / 1000 / 30) + offset;
+  const keyBytes = base32Decode(secret);
+  const hash = await hmacSHA1(keyBytes, numToBytes(counter));
+  const o = hash[19] & 0xf;
+  const code = ((hash[o] & 0x7f) << 24 | (hash[o+1] & 0xff) << 16 |
+                (hash[o+2] & 0xff) << 8 | (hash[o+3] & 0xff)) % 1000000;
+  return String(code).padStart(6, '0');
+}
+async function verifyTOTP(input) {
+  for (const off of [0, -1, 1]) {           // allow ±1 window for clock drift
+    if (input === await generateTOTP(TOTP_SECRET, off)) return true;
+  }
+  return false;
+}
+
+/* ═══════════════════ AUTH FLOW ═══════════════════ */
+const VALID_USER = 'plantex';
+const VALID_PASS = '7500';
+var dashboardInitialized = false;
+var timerInterval = null;
+
+function showLogin() {
+  document.getElementById('loginOverlay').classList.add('active');
+  setTimeout(() => document.getElementById('userInput').focus(), 100);
+}
+function hideLogin() {
+  document.getElementById('loginOverlay').classList.remove('active');
+  document.getElementById('errorMsg').classList.remove('show');
+  clearInterval(timerInterval);
+}
+function showError(msg) {            // login error (separate from dashboard's showError2)
+  const el = document.getElementById('errorMsg');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+function hideError() { document.getElementById('errorMsg').classList.remove('show'); }
+
+function checkCredentials() {
+  const user = document.getElementById('userInput').value.trim().toLowerCase();
+  const pass = document.getElementById('passInput').value.trim();
+  if (user === VALID_USER && pass === VALID_PASS) {
+    hideError();
+    document.getElementById('step1-fields').style.display = 'none';
+    document.getElementById('step2-fields').style.display = 'block';
+    document.getElementById('modal-title').textContent = 'Two-factor verification';
+    document.getElementById('modal-sub').textContent = 'Enter the code from your authenticator app.';
+    document.getElementById('s1').className = 'step done';
+    document.getElementById('s1').textContent = '✓';
+    document.getElementById('s2').className = 'step active';
+    document.getElementById('otpInput').value = '';
+    document.getElementById('otpInput').focus();
+    startTimer();
+  } else {
+    showError('Incorrect user ID or password. Try again.');
+    document.getElementById('passInput').value = '';
+    document.getElementById('passInput').focus();
+  }
+}
+function startTimer() {
+  clearInterval(timerInterval);
+  function tick() {
+    const secs = 30 - (Math.floor(Date.now() / 1000) % 30);
+    const bar = document.getElementById('timerBar');
+    if (bar) bar.style.width = (secs / 30) * 100 + '%';
+  }
+  tick();
+  timerInterval = setInterval(tick, 1000);
+}
+async function checkOTP() {
+  const input = document.getElementById('otpInput').value.trim();
+  if (input.length !== 6) { showError('Enter the full 6-digit code.'); return; }
+  const btn = document.querySelector('#step2-fields .login-btn');
+  btn.disabled = true; btn.textContent = 'Verifying…';
+  const valid = await verifyTOTP(input);
+  btn.disabled = false; btn.textContent = 'Verify & Sign in →';
+  if (valid) {
+    clearInterval(timerInterval);
+    hideLogin();
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('dashboard-wrapper').classList.add('active');
+    if (!dashboardInitialized) { dashboardInitialized = true; initDashboard(); }
+  } else {
+    showError('Incorrect code. Check your authenticator app and try again.');
+    document.getElementById('otpInput').value = '';
+    document.getElementById('otpInput').focus();
+  }
+}
+function backToStep1() {
+  clearInterval(timerInterval);
+  hideError();
+  document.getElementById('step1-fields').style.display = 'block';
+  document.getElementById('step2-fields').style.display = 'none';
+  document.getElementById('modal-title').textContent = 'Sign in';
+  document.getElementById('modal-sub').textContent = 'Enter your credentials to continue.';
+  document.getElementById('s1').className = 'step active';
+  document.getElementById('s1').textContent = '1';
+  document.getElementById('s2').className = 'step';
+}
+function doLogout() {
+  if (window.__stopDashPoll) window.__stopDashPoll();   // stop the Run Scan poll
+  document.getElementById('dashboard-wrapper').classList.remove('active');
+  document.getElementById('homepage').style.display = 'block';
+  document.getElementById('userInput').value = '';
+  document.getElementById('passInput').value = '';
+  backToStep1();
+}
+document.getElementById('loginOverlay').addEventListener('click', function(e) {
+  if (e.target === this) hideLogin();
+});
+
+/* ═══════════════════ DASHBOARD (Supabase) ═══════════════════ */
+function initDashboard() {
+  const CFG = {
+    url: "https://zyhyzfivblygfkaaxgsb.supabase.co",
+    key: "sb_publishable_WKEUwNPRi_-njAbwgkGkAw_vg38W3S6",
+  };
+  const HEADERS = { apikey: CFG.key, Authorization: "Bearer " + CFG.key };
+  const $ = (id) => document.getElementById(id);
+  const esc = (v) => (v === null || v === undefined ? "" : String(v)).replace(/[&<>"']/g,
+    (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+
+  async function fetchAll(path) {
+    const page = 1000; let from = 0, all = [];
+    while (true) {
+      const res = await fetch(`${CFG.url}/rest/v1/${path}`, {
+        headers: { ...HEADERS, "Range-Unit": "items", "Range": `${from}-${from + page - 1}` },
+      });
+      if (res.status === 416) break;
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+      const rows = await res.json();
+      if (!Array.isArray(rows)) throw new Error(rows.message || "Unexpected response");
+      all = all.concat(rows);
+      if (rows.length < page) break;
+      from += page;
     }
+    return all;
   }
-  function doLogout(){
-    document.getElementById('dashboard').classList.remove('active');
-    document.getElementById('homepage').style.display='block';
-    document.getElementById('emailInput').value='';
-    document.getElementById('passInput').value='';
+  async function fetchLimited(path) {   // single request (no Range); URL ?limit is fine
+    const res = await fetch(`${CFG.url}/rest/v1/${path}`, { headers: HEADERS });
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+    return res.json();
   }
-  document.getElementById('loginOverlay').addEventListener('click',function(e){if(e.target===this)hideLogin()});
+  async function sbInsert(table, row) {
+    const res = await fetch(`${CFG.url}/rest/v1/${table}`, {
+      method: "POST",
+      headers: { ...HEADERS, "Content-Type": "application/json", "Prefer": "return=representation" },
+      body: JSON.stringify(row),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+    return res.json();
+  }
+
+  const fmtDate = (s) => { if (!s) return ""; const d = new Date(s); return isNaN(d) ? s : d.toLocaleString("en-IN",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}); };
+  const money = (v) => v === null || v === undefined ? "—" : "₹" + Math.round(v);
+  const num = (v) => v === null || v === undefined ? "—" : v;
+  const asinLink = (a) => a ? `<a class="asin" href="https://www.amazon.in/dp/${encodeURIComponent(a)}" target="_blank" rel="noopener">${esc(a)}</a>` : "";
+  const uniq = (arr) => [...new Set(arr)];
+  function scanOptions(rows) {
+    const m = new Map();
+    for (const r of rows) if (!m.has(r.scan_id)) m.set(r.scan_id, r.scanned_at);
+    return [...m.entries()].sort((a,b) => b[0]-a[0]).map(([id,at]) => ({ id:String(id), label:fmtDate(at) }));
+  }
+  function rowClass(r) { return r.is_plantex ? "plantex" : (r.is_competitor ? "competitor" : ""); }
+  function typeTag(r) { return r.is_plantex ? '<span class="tag p">Plantex</span>' : r.is_competitor ? '<span class="tag c">Competitor</span>' : ""; }
+  function applySearch(rows, q, fields) {
+    q = (q||"").trim().toLowerCase(); if (!q) return rows;
+    return rows.filter((r) => fields.some((f) => String(r[f]??"").toLowerCase().includes(q)));
+  }
+  function setStatus(msg) { $("status").textContent = msg; }
+  function showError2(e) { $("table").innerHTML = `<div class="empty">⚠️ ${esc(e.message || e)}</div>`; setStatus("Error."); }
+
+  /* -------- Keyword Ranks -------- */
+  const KW = { keyword:"", scan:"", q:"", rows:[], reqId:0 };
+  async function viewKeyword() {
+    $("title").textContent = "Keyword Ranks";
+    $("subtitle").textContent = "Organic rankings by keyword, captured on each scan date.";
+    $("filters").innerHTML = `<label>Keyword</label><select id="f-kw"></select><label>Scan date</label><select id="f-scan"></select><input id="f-q" type="search" placeholder="Filter ASIN / brand / title …">`;
+    setStatus("Loading keywords …");
+    let kws;
+    try { kws = uniq((await fetchAll("keyword_results?select=keyword&order=keyword")).map((r)=>r.keyword).filter(Boolean)); } catch (e) { return showError2(e); }
+    const kwSel = $("f-kw");
+    kwSel.innerHTML = kws.map((k)=>`<option>${esc(k)}</option>`).join("");
+    KW.keyword = kws.includes(KW.keyword) ? KW.keyword : (kws[0]||"");
+    kwSel.value = KW.keyword;
+    async function loadScans() {
+      const my = ++KW.reqId;
+      const rows = await fetchAll(`keyword_results?select=scan_id,scanned_at&keyword=eq.${encodeURIComponent(KW.keyword)}&order=scan_id.desc`);
+      if (my !== KW.reqId) return;
+      const opts = scanOptions(rows);
+      $("f-scan").innerHTML = opts.map((o)=>`<option value="${esc(o.id)}">${esc(o.label)}</option>`).join("");
+      KW.scan = opts.some((o)=>o.id===KW.scan) ? KW.scan : (opts[0]?.id ?? "");
+      $("f-scan").value = KW.scan;
+    }
+    async function loadTable() {
+      const id = Number(KW.scan);
+      if (!KW.keyword || !Number.isInteger(id)) { KW.rows = []; render(); return; }
+      const my = ++KW.reqId; setStatus("Loading …");
+      let rows;
+      try { rows = await fetchAll(`keyword_results?keyword=eq.${encodeURIComponent(KW.keyword)}&scan_id=eq.${id}&order=organic_rank.asc.nullslast`); }
+      catch (e) { if (my === KW.reqId) showError2(e); return; }
+      if (my !== KW.reqId) return;
+      KW.rows = rows; render();
+    }
+    function render() {
+      const shown = applySearch(KW.rows, KW.q, ["asin","brand","title"]);
+      const body = shown.map((r) => {
+        const rank = r.organic_rank != null ? r.organic_rank : (r.sponsored ? "Ad" : "—");
+        return `<tr class="${rowClass(r)}"><td class="num">${esc(rank)}</td><td>${esc(r.brand)}</td><td>${asinLink(r.asin)}</td><td>${esc(r.title)}</td><td class="num">${money(r.price)}</td><td class="num">${r.rating!=null?esc(r.rating):"—"}</td><td class="num">${num(r.reviews)}</td><td>${typeTag(r)}</td></tr>`;
+      }).join("");
+      $("table").innerHTML = shown.length ? `<table><thead><tr><th class="num">Rank</th><th>Brand</th><th>ASIN</th><th>Title</th><th class="num">Price</th><th class="num">Rating</th><th class="num">Reviews</th><th>Type</th></tr></thead><tbody>${body}</tbody></table>` : `<div class="empty">No results for this scan.</div>`;
+      setStatus(`${shown.length} products · ${shown.filter((r)=>r.is_plantex).length} Plantex`);
+    }
+    kwSel.onchange = async () => { KW.keyword = kwSel.value; await loadScans(); await loadTable(); };
+    $("f-scan").onchange = async () => { KW.scan = $("f-scan").value; await loadTable(); };
+    $("f-q").oninput = (e) => { KW.q = e.target.value; render(); };
+    await loadScans(); await loadTable();
+  }
+
+  /* -------- Bestsellers (BSR) -------- */
+  const BS = { category:"", scan:"", q:"", rows:[], reqId:0 };
+  async function viewBSR() {
+    $("title").textContent = "Bestsellers (BSR)";
+    $("subtitle").textContent = "Bestseller ranks per category, captured on each scan date.";
+    $("filters").innerHTML = `<label>Category</label><select id="b-cat"></select><label>Scan date</label><select id="b-scan"></select><input id="b-q" type="search" placeholder="Filter ASIN / brand / title …">`;
+    setStatus("Loading categories …");
+    let cats;
+    try { cats = uniq((await fetchAll("bsr_results?select=category&order=category")).map((r)=>r.category).filter(Boolean)); } catch (e) { return showError2(e); }
+    const sel = $("b-cat");
+    sel.innerHTML = cats.map((c)=>`<option>${esc(c)}</option>`).join("");
+    BS.category = cats.includes(BS.category) ? BS.category : (cats[0]||"");
+    sel.value = BS.category;
+    async function loadScans() {
+      const my = ++BS.reqId;
+      const rows = await fetchAll(`bsr_results?select=scan_id,scanned_at&category=eq.${encodeURIComponent(BS.category)}&order=scan_id.desc`);
+      if (my !== BS.reqId) return;
+      const opts = scanOptions(rows);
+      $("b-scan").innerHTML = opts.map((o)=>`<option value="${esc(o.id)}">${esc(o.label)}</option>`).join("");
+      BS.scan = opts.some((o)=>o.id===BS.scan) ? BS.scan : (opts[0]?.id ?? "");
+      $("b-scan").value = BS.scan;
+    }
+    async function loadTable() {
+      const id = Number(BS.scan);
+      if (!BS.category || !Number.isInteger(id)) { BS.rows = []; render(); return; }
+      const my = ++BS.reqId; setStatus("Loading …");
+      let rows;
+      try { rows = await fetchAll(`bsr_results?category=eq.${encodeURIComponent(BS.category)}&scan_id=eq.${id}&order=bsr_rank.asc.nullslast`); }
+      catch (e) { if (my === BS.reqId) showError2(e); return; }
+      if (my !== BS.reqId) return;
+      BS.rows = rows; render();
+    }
+    function render() {
+      const shown = applySearch(BS.rows, BS.q, ["asin","brand","title"]);
+      const body = shown.map((r)=>`<tr class="${rowClass(r)}"><td class="num">${r.bsr_rank!=null?"#"+esc(r.bsr_rank):"—"}</td><td>${esc(r.brand)}</td><td>${asinLink(r.asin)}</td><td>${esc(r.title)}</td><td class="num">${money(r.price)}</td><td class="num">${r.rating!=null?esc(r.rating):"—"}</td><td class="num">${num(r.reviews)}</td><td>${typeTag(r)}</td></tr>`).join("");
+      $("table").innerHTML = shown.length ? `<table><thead><tr><th class="num">BSR</th><th>Brand</th><th>ASIN</th><th>Title</th><th class="num">Price</th><th class="num">Rating</th><th class="num">Reviews</th><th>Type</th></tr></thead><tbody>${body}</tbody></table>` : `<div class="empty">No results for this scan.</div>`;
+      setStatus(`${shown.length} products · ${shown.filter((r)=>r.is_plantex).length} Plantex`);
+    }
+    sel.onchange = async () => { BS.category = sel.value; await loadScans(); await loadTable(); };
+    $("b-scan").onchange = async () => { BS.scan = $("b-scan").value; await loadTable(); };
+    $("b-q").oninput = (e) => { BS.q = e.target.value; render(); };
+    await loadScans(); await loadTable();
+  }
+
+  /* -------- Delivery Speed -------- */
+  const DL = { scan:"", q:"", ownOnly:false, rows:[], reqId:0 };
+  function dayCell(days, available) {
+    if (available === false) return `<td class="num cell-na">NA</td>`;
+    if (days === null || days === undefined) return `<td class="num cell-na">?</td>`;
+    const cls = days <= 1 ? "cell-fast" : (days <= 3 ? "cell-med" : "cell-slow");
+    return `<td class="num ${cls}">${esc(days)}d</td>`;
+  }
+  async function viewDelivery() {
+    $("title").textContent = "Delivery Speed";
+    $("subtitle").textContent = "Delivery days per product and pincode, captured on each scan date.";
+    $("filters").innerHTML = `<label>Scan date</label><select id="d-scan"></select><label><input type="checkbox" id="d-own"> Plantex only</label><input id="d-q" type="search" placeholder="Filter ASIN / brand / city …"><span class="legend"><span class="sq" style="background:var(--fast)"></span>≤1d <span class="sq" style="background:var(--med)"></span>2–3d <span class="sq" style="background:var(--slow)"></span>≥4d <span class="sq" style="background:var(--na)"></span>NA</span>`;
+    setStatus("Loading scans …");
+    let sample;
+    try { sample = await fetchAll("delivery_results?select=scan_id,scanned_at&order=scan_id.desc"); } catch (e) { return showError2(e); }
+    const opts = scanOptions(sample);
+    $("d-scan").innerHTML = opts.map((o)=>`<option value="${esc(o.id)}">${esc(o.label)}</option>`).join("");
+    DL.scan = opts.some((o)=>o.id===DL.scan) ? DL.scan : (opts[0]?.id ?? "");
+    $("d-scan").value = DL.scan;
+    async function loadTable() {
+      const id = Number(DL.scan);
+      if (!Number.isInteger(id)) { DL.rows = []; render(); return; }
+      const my = ++DL.reqId; setStatus("Loading …");
+      let rows;
+      try { rows = await fetchAll(`delivery_results?scan_id=eq.${id}&order=is_own.desc,brand,asin,city`); }
+      catch (e) { if (my === DL.reqId) showError2(e); return; }
+      if (my !== DL.reqId) return;
+      DL.rows = rows; render();
+    }
+    function render() {
+      let rows = DL.ownOnly ? DL.rows.filter((r)=>r.is_own) : DL.rows;
+      const shown = applySearch(rows, DL.q, ["asin","brand","label","city"]);
+      const body = shown.map((r)=>`<tr class="${r.is_own?"plantex":""}"><td>${esc(r.brand||r.label)}</td><td>${asinLink(r.asin)}</td><td class="num">${r.is_own?"Yes":""}</td><td>${esc(r.city)}</td><td class="num">${esc(r.pincode)}</td><td class="num">${esc(r.tier)}</td>${dayCell(r.days,r.available)}</tr>`).join("");
+      $("table").innerHTML = shown.length ? `<table><thead><tr><th>Brand</th><th>ASIN</th><th class="num">Own</th><th>City</th><th class="num">Pincode</th><th class="num">Tier</th><th class="num">Days</th></tr></thead><tbody>${body}</tbody></table>` : `<div class="empty">No cells for this scan.</div>`;
+      setStatus(`${shown.length} cells`);
+    }
+    $("d-scan").onchange = async () => { DL.scan = $("d-scan").value; await loadTable(); };
+    $("d-own").onchange = (e) => { DL.ownOnly = e.target.checked; render(); };
+    $("d-q").oninput = (e) => { DL.q = e.target.value; render(); };
+    await loadTable();
+  }
+
+  /* -------- Run Scan (request → laptop scrapes → uploads) -------- */
+  let POLL = null;
+  function clearPoll() { if (POLL) { clearInterval(POLL); POLL = null; } }
+  window.__stopDashPoll = clearPoll;   // let logout stop the poll
+  const REQ_CELL = { pending:"cell-na", running:"cell-med", done:"cell-fast", error:"cell-slow" };
+  async function viewRun() {
+    $("title").textContent = "Run Scan";
+    $("subtitle").textContent = "Request a scan — it runs on your laptop (keep the app open with the cloud agent enabled), then the fresh data appears in the views above.";
+    $("filters").innerHTML = `<label>Type</label><select id="r-type"><option value="keyword">Keyword</option><option value="bsr">Bestseller URL</option><option value="delivery">Delivery (all products)</option></select><input id="r-payload" type="search" placeholder="Keyword to scan, e.g. soap dispenser"><button id="r-go" class="runbtn">Run on my laptop</button>`;
+    async function loadReq() {
+      let rows;
+      try { rows = await fetchLimited("scan_requests?order=id.desc&limit=40"); }
+      catch (e) {
+        clearPoll();
+        $("table").innerHTML = `<div class="empty">⚠️ ${esc(e.message)}<br><br>If the request queue is missing, open the app → Settings → Cloud Sync → “Copy agent SQL”, run it once in Supabase, then reload this page.</div>`;
+        setStatus("Queue not ready.");
+        return;
+      }
+      const body = rows.map((r)=>`<tr><td>${esc(fmtDate(r.requested_at))}</td><td>${esc(r.type)}</td><td>${esc(r.payload)}</td><td class="num ${REQ_CELL[r.status]||""}">${esc(r.status)}</td><td>${esc(r.note)}</td></tr>`).join("");
+      $("table").innerHTML = rows.length ? `<table><thead><tr><th>Requested</th><th>Type</th><th>What</th><th class="num">Status</th><th>Result</th></tr></thead><tbody>${body}</tbody></table>` : `<div class="empty">No scan requests yet — send one above.</div>`;
+      const busy = rows.filter((r)=>r.status==="pending"||r.status==="running").length;
+      setStatus(busy ? `${busy} in progress — your laptop is working; this list refreshes automatically.` : "Idle. Requests run when the app is open with the cloud agent enabled.");
+    }
+    $("r-type").onchange = () => {
+      const t = $("r-type").value;
+      $("r-payload").style.display = t === "delivery" ? "none" : "";
+      $("r-payload").placeholder = t === "bsr" ? "Amazon bestseller category URL" : "Keyword to scan, e.g. soap dispenser";
+    };
+    $("r-go").onclick = async () => {
+      const type = $("r-type").value;
+      const payload = $("r-payload").value.trim();
+      if (type !== "delivery" && !payload) { setStatus("Enter a keyword / URL first."); return; }
+      $("r-go").disabled = true; setStatus("Sending request …");
+      try {
+        await sbInsert("scan_requests", { type, payload, status:"pending" });
+        $("r-payload").value = "";
+        setStatus("Requested ✓ — your laptop will scan it shortly (keep the app open).");
+      } catch (e) {
+        $("table").innerHTML = `<div class="empty">⚠️ Could not send request: ${esc(e.message)}<br><br>Make sure you ran the agent SQL (app → Settings → Cloud Sync → “Copy agent SQL”).</div>`;
+        setStatus("Request failed.");
+      }
+      $("r-go").disabled = false;
+      await loadReq();
+    };
+    await loadReq();
+    POLL = setInterval(loadReq, 8000);
+  }
+
+  /* -------- shell -------- */
+  const VIEWS = { keyword:viewKeyword, bsr:viewBSR, delivery:viewDelivery, run:viewRun };
+  function go(view) {
+    clearPoll();
+    document.querySelectorAll("#nav button").forEach((b)=>b.classList.toggle("active", b.dataset.view===view));
+    $("table").innerHTML = `<div class="empty">Loading …</div>`;
+    VIEWS[view]().catch(showError2);
+  }
+  document.querySelectorAll("#nav button").forEach((b)=>b.addEventListener("click", () => go(b.dataset.view)));
+  (async function init() {
+    try { const res = await fetch(`${CFG.url}/rest/v1/keyword_results?select=id&limit=1`, { headers: HEADERS }); $("conn").textContent = res.ok ? "connected ✓" : "auth error"; }
+    catch { $("conn").textContent = "offline"; }
+    go("keyword");
+  })();
+}
 </script>
 </body>
 </html>
