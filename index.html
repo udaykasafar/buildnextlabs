@@ -219,39 +219,18 @@
       <div class="logo-text" style="font-size:1.6rem"><span class="b">Build</span><span class="n">Next</span></div>
       <span style="font-size:0.6rem;color:#6B6B6B;letter-spacing:2px;text-transform:uppercase;display:block;text-align:center">Labs</span>
     </div>
-    <div class="step-indicator">
-      <div class="step active" id="s1">1</div>
-      <div class="step-line"></div>
-      <div class="step" id="s2">2</div>
-    </div>
     <h2 id="modal-title">Sign in</h2>
-    <p class="sub" id="modal-sub">Enter your credentials to continue.</p>
+    <p class="sub" id="modal-sub">Enter your User ID and password to continue.</p>
     <div class="error-msg" id="errorMsg"></div>
-
-    <!-- Step 1 -->
-    <div id="step1-fields">
-      <div class="form-group">
-        <label>User ID</label>
-        <input type="text" id="userInput" placeholder="Enter your user ID" autocomplete="username"/>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="passInput" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkCredentials()"/>
-      </div>
-      <button class="login-btn" onclick="checkCredentials()">Continue →</button>
+    <div class="form-group">
+      <label>User ID</label>
+      <input type="text" id="userInput" placeholder="Enter your user ID" autocomplete="username"/>
     </div>
-
-    <!-- Step 2 (hidden initially) -->
-    <div id="step2-fields" style="display:none">
-      <div class="form-group">
-        <label>6-digit code from Google Authenticator</label>
-        <input type="text" id="otpInput" class="otp-input" placeholder="000000" maxlength="6" inputmode="numeric" onkeydown="if(event.key==='Enter')checkOTP()" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
-      </div>
-      <p class="otp-hint">Open Google Authenticator → BuildNext Labs → enter the 6-digit code</p>
-      <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar"></div></div>
-      <button class="login-btn" style="margin-top:1rem" onclick="checkOTP()">Verify &amp; Sign in →</button>
-      <button onclick="backToStep1()" style="width:100%;background:none;border:none;color:var(--gray-400);font-size:0.8rem;cursor:pointer;margin-top:10px;font-family:inherit">← Back</button>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="passInput" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkCredentials()"/>
     </div>
+    <button class="login-btn" onclick="checkCredentials()">Sign in →</button>
   </div>
 </div>
 
@@ -292,59 +271,15 @@
 </div>
 
 <script>
-/* ═══════════════════ TOTP ENGINE (RFC 6238) ═══════════════════
-   Runs entirely in the browser. The secret must match what you set
-   up in Google Authenticator exactly.
-   NOTE: a username/password/secret in client-side code is a soft
-   gate, not real security — anyone who views the page source can
-   read them. Fine for a private dashboard whose DATA is read-only;
-   do not treat it as protecting anything sensitive.
+/* ═══════════════════ AUTH FLOW (User ID + Password) ═══════════════════
+   NOTE: a username/password in client-side code is a SOFT gate, not real
+   security — anyone who views the page source can read it. Fine here because
+   the DATA is read-only (publishable key + row-level security); don't treat
+   it as protecting anything secret.
 ══════════════════════════════════════════════════════════════ */
-const TOTP_SECRET = 'JBSWY3DPEHPK3PXP'; // Base32 secret — matches Google Authenticator
-
-function base32Decode(s) {
-  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-  s = s.toUpperCase().replace(/=+$/, '');
-  let bits = 0, val = 0;
-  const out = [];
-  for (let i = 0; i < s.length; i++) {
-    val = (val << 5) | alpha.indexOf(s[i]);
-    bits += 5;
-    if (bits >= 8) { out.push((val >>> (bits - 8)) & 255); bits -= 8; }
-  }
-  return new Uint8Array(out);
-}
-async function hmacSHA1(keyBytes, msgBytes) {
-  const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
-  const sig = await crypto.subtle.sign('HMAC', key, msgBytes);
-  return new Uint8Array(sig);
-}
-function numToBytes(n) {
-  const b = new Uint8Array(8);
-  for (let i = 7; i >= 0; i--) { b[i] = n & 0xff; n = Math.floor(n / 256); }
-  return b;
-}
-async function generateTOTP(secret, offset = 0) {
-  const counter = Math.floor(Date.now() / 1000 / 30) + offset;
-  const keyBytes = base32Decode(secret);
-  const hash = await hmacSHA1(keyBytes, numToBytes(counter));
-  const o = hash[19] & 0xf;
-  const code = ((hash[o] & 0x7f) << 24 | (hash[o+1] & 0xff) << 16 |
-                (hash[o+2] & 0xff) << 8 | (hash[o+3] & 0xff)) % 1000000;
-  return String(code).padStart(6, '0');
-}
-async function verifyTOTP(input) {
-  for (const off of [0, -1, 1]) {           // allow ±1 window for clock drift
-    if (input === await generateTOTP(TOTP_SECRET, off)) return true;
-  }
-  return false;
-}
-
-/* ═══════════════════ AUTH FLOW ═══════════════════ */
 const VALID_USER = 'plantex';
 const VALID_PASS = '7500';
 var dashboardInitialized = false;
-var timerInterval = null;
 
 function showLogin() {
   document.getElementById('loginOverlay').classList.add('active');
@@ -353,7 +288,6 @@ function showLogin() {
 function hideLogin() {
   document.getElementById('loginOverlay').classList.remove('active');
   document.getElementById('errorMsg').classList.remove('show');
-  clearInterval(timerInterval);
 }
 function showError(msg) {            // login error (separate from dashboard's showError2)
   const el = document.getElementById('errorMsg');
@@ -367,61 +301,15 @@ function checkCredentials() {
   const pass = document.getElementById('passInput').value.trim();
   if (user === VALID_USER && pass === VALID_PASS) {
     hideError();
-    document.getElementById('step1-fields').style.display = 'none';
-    document.getElementById('step2-fields').style.display = 'block';
-    document.getElementById('modal-title').textContent = 'Two-factor verification';
-    document.getElementById('modal-sub').textContent = 'Enter the code from your authenticator app.';
-    document.getElementById('s1').className = 'step done';
-    document.getElementById('s1').textContent = '✓';
-    document.getElementById('s2').className = 'step active';
-    document.getElementById('otpInput').value = '';
-    document.getElementById('otpInput').focus();
-    startTimer();
-  } else {
-    showError('Incorrect user ID or password. Try again.');
-    document.getElementById('passInput').value = '';
-    document.getElementById('passInput').focus();
-  }
-}
-function startTimer() {
-  clearInterval(timerInterval);
-  function tick() {
-    const secs = 30 - (Math.floor(Date.now() / 1000) % 30);
-    const bar = document.getElementById('timerBar');
-    if (bar) bar.style.width = (secs / 30) * 100 + '%';
-  }
-  tick();
-  timerInterval = setInterval(tick, 1000);
-}
-async function checkOTP() {
-  const input = document.getElementById('otpInput').value.trim();
-  if (input.length !== 6) { showError('Enter the full 6-digit code.'); return; }
-  const btn = document.querySelector('#step2-fields .login-btn');
-  btn.disabled = true; btn.textContent = 'Verifying…';
-  const valid = await verifyTOTP(input);
-  btn.disabled = false; btn.textContent = 'Verify & Sign in →';
-  if (valid) {
-    clearInterval(timerInterval);
     hideLogin();
     document.getElementById('homepage').style.display = 'none';
     document.getElementById('dashboard-wrapper').classList.add('active');
     if (!dashboardInitialized) { dashboardInitialized = true; initDashboard(); }
   } else {
-    showError('Incorrect code. Check your authenticator app and try again.');
-    document.getElementById('otpInput').value = '';
-    document.getElementById('otpInput').focus();
+    showError('Incorrect user ID or password. Try again.');
+    document.getElementById('passInput').value = '';
+    document.getElementById('passInput').focus();
   }
-}
-function backToStep1() {
-  clearInterval(timerInterval);
-  hideError();
-  document.getElementById('step1-fields').style.display = 'block';
-  document.getElementById('step2-fields').style.display = 'none';
-  document.getElementById('modal-title').textContent = 'Sign in';
-  document.getElementById('modal-sub').textContent = 'Enter your credentials to continue.';
-  document.getElementById('s1').className = 'step active';
-  document.getElementById('s1').textContent = '1';
-  document.getElementById('s2').className = 'step';
 }
 function doLogout() {
   if (window.__stopDashPoll) window.__stopDashPoll();   // stop the Run Scan poll
@@ -429,7 +317,7 @@ function doLogout() {
   document.getElementById('homepage').style.display = 'block';
   document.getElementById('userInput').value = '';
   document.getElementById('passInput').value = '';
-  backToStep1();
+  document.getElementById('errorMsg').classList.remove('show');
 }
 document.getElementById('loginOverlay').addEventListener('click', function(e) {
   if (e.target === this) hideLogin();
